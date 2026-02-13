@@ -1,0 +1,57 @@
+CONTAINER SECURITY REPORT
+=========================
+Container: mike-co-opensearch-1
+ID: 381937be357d
+Image: cgr.dev/mikeco.com/opensearch:2
+Scan Date: Fri Feb 13 18:34:30 EST 2026
+
+## 1. PRIVILEGED MODE CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Container is not privileged
+
+## 2. CAPABILITIES CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Added Capabilities: []
+Dropped Capabilities: []
+
+## 3. NAMESPACE SHARING CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PID Namespace: 
+IPC Namespace: private
+Network Mode: mike-co_rag-network
+
+## 4. VOLUME MOUNTS CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Source: /var/lib/docker/volumes/mike-co_opensearch-data/_data -> Dest: /usr/share/opensearch/data (rw)
+
+/var/lib/docker/volumes/mike-co_opensearch-data/_data|true
+⚠️  WARNING: Writable host filesystem mounts detected
+
+## 5. SECURITY OPTIONS CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Security Options: []
+
+## 6. EXPOSED PORTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+9200/tcp -> 9200
+
+
+## 7. ENVIRONMENT VARIABLES (filtered for secrets)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+No obvious secrets in env vars
+
+## 8. RUNNING PROCESSES (if accessible)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PID   USER     TIME  COMMAND
+    1 nonroot   6:13 /usr/lib/jvm/default-jvm/bin/java -Xshare:auto -Dopensearch.networkaddress.cache.ttl=60 -Dopensearch.networkaddress.cache.negative.ttl=10 -XX:+AlwaysPreTouch -Xss1m -Djava.awt.headless=true -Dfile.encoding=UTF-8 -Djna.nosys=true -XX:-OmitStackTraceInFastThrow -XX:+ShowCodeDetailsInExceptionMessages -Dio.netty.noUnsafe=true -Dio.netty.noKeySetOptimization=true -Dio.netty.recycler.maxCapacityPerThread=0 -Dio.netty.allocator.numDirectArenas=0 -Dlog4j.shutdownHookEnabled=false -Dlog4j2.disable.jmx=true -Djava.locale.providers=SPI,COMPAT -Xms1g -Xmx1g -XX:+UseG1GC -XX:G1ReservePercent=25 -XX:InitiatingHeapOccupancyPercent=30 -Djava.io.tmpdir=/tmp/opensearch-9590528658652750163 -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=data -XX:ErrorFile=logs/hs_err_pid%p.log -Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,pid,tags:filecount=32,filesize=64m -Djava.util.concurrent.ForkJoinPool.common.threadFactory=org.opensearch.secure_sm.SecuredForkJoinWorkerThreadFactory -Dopensearch.cgroups.hierarchy.override=/ -Dopensearch.cgroups.hierarchy.override=/ -Xms512m -Xmx512m -XX:MaxDirectMemorySize=268435456 -Dopensearch.path.home=/usr/share/opensearch -Dopensearch.path.conf=/usr/share/opensearch/config -Dopensearch.distribution.type=docker -Dopensearch.bundled_jdk=true -cp /usr/share/opensearch/lib/* org.opensearch.bootstrap.OpenSearch -Eplugins.security.disabled=true -Ediscovery.type=single-node
+  236 nonroot   0:00 ps aux
+
+## 9. SUID BINARIES (potential privilege escalation)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 10. NETWORK CONFIGURATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OCI runtime exec failed: exec failed: unable to start container process: exec: "ifconfig": executable file not found in $PATH
+OCI runtime exec failed: exec failed: unable to start container process: exec: "ip": executable file not found in $PATH
+Cannot access network config
+

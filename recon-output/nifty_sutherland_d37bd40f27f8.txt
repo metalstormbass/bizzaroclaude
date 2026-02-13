@@ -1,0 +1,53 @@
+CONTAINER SECURITY REPORT
+=========================
+Container: nifty_sutherland
+ID: d37bd40f27f8
+Image: cgr.dev/chainguard-private/chainguard-base
+Scan Date: Fri Feb 13 18:34:06 EST 2026
+
+## 1. PRIVILEGED MODE CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Container is not privileged
+
+## 2. CAPABILITIES CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Added Capabilities: []
+Dropped Capabilities: []
+
+## 3. NAMESPACE SHARING CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PID Namespace: 
+IPC Namespace: private
+Network Mode: bridge
+
+## 4. VOLUME MOUNTS CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+## 5. SECURITY OPTIONS CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Security Options: []
+
+## 6. EXPOSED PORTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+## 7. ENVIRONMENT VARIABLES (filtered for secrets)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+No obvious secrets in env vars
+
+## 8. RUNNING PROCESSES (if accessible)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PID   USER     TIME  COMMAND
+    1 root      0:00 /bin/sh
+   12 root      0:00 ps aux
+
+## 9. SUID BINARIES (potential privilege escalation)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 10. NETWORK CONFIGURATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OCI runtime exec failed: exec failed: unable to start container process: exec: "ifconfig": executable file not found in $PATH
+OCI runtime exec failed: exec failed: unable to start container process: exec: "ip": executable file not found in $PATH
+Cannot access network config
+

@@ -1,0 +1,219 @@
+CONTAINER SECURITY REPORT
+=========================
+Container: kind-control-plane
+ID: 3bbb6cb4fa1a
+Image: kindest/node:v1.35.0
+Scan Date: Fri Feb 13 18:34:42 EST 2026
+
+## 1. PRIVILEGED MODE CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️  CRITICAL: Container is running in PRIVILEGED mode!
+   Impact: Can escape to host with full root access
+
+## 2. CAPABILITIES CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Added Capabilities: []
+Dropped Capabilities: []
+
+## 3. NAMESPACE SHARING CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PID Namespace: 
+IPC Namespace: private
+Network Mode: kind
+
+## 4. VOLUME MOUNTS CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Source: /lib/modules -> Dest: /lib/modules (ro)
+Source: /host_mnt/Users/mike/Projects/cg-helm-charts/${HOME}/.docker/config.json -> Dest: /var/lib/kubelet/config.json ()
+Source: /var/lib/docker/volumes/1b1d3d213a5e1823be73f2eefb2e862bb0b9b6482fd909d2e3582e525d453aa2/_data -> Dest: /var ()
+
+/host_mnt/Users/mike/Projects/cg-helm-charts/${HOME}/.docker/config.json|true
+/var/lib/docker/volumes/1b1d3d213a5e1823be73f2eefb2e862bb0b9b6482fd909d2e3582e525d453aa2/_data|true
+/lib/modules|false
+⚠️  WARNING: Writable host filesystem mounts detected
+
+## 5. SECURITY OPTIONS CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Security Options: [seccomp=unconfined apparmor=unconfined label=disable]
+⚠️  WARNING: AppArmor disabled
+⚠️  CRITICAL: Seccomp disabled - all syscalls allowed!
+
+## 6. EXPOSED PORTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+6443/tcp -> 49285
+
+
+## 7. ENVIRONMENT VARIABLES (filtered for secrets)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+No obvious secrets in env vars
+
+## 8. RUNNING PROCESSES (if accessible)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0  22868 13712 ?        Ss   Feb10   1:20 /sbin/init
+root          90  0.1  1.8 385120 309524 ?       Ss   Feb10   7:04 /lib/systemd/systemd-journald
+root         105  1.3  0.6 3093576 98364 ?       Ssl  Feb10  72:16 /usr/local/bin/containerd
+root         266  0.0  0.0 1235188 16288 ?       Sl   Feb10   2:46 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 9989fb785702761675aab04e7fbd009827f8a563c38bd4cfcdbbd78d2dfc3a7b -address /run/containerd/containerd.sock
+root         300  0.0  0.0 1235188 16328 ?       Sl   Feb10   3:07 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 98d2044287236b71287afc006f17e7991904db609ae2585925318148e8e753ce -address /run/containerd/containerd.sock
+root         323  0.0  0.1 1235188 16552 ?       Sl   Feb10   2:53 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 64703b8aa22666043601091f82ebd4c0e3dcb2313b558c9ceef96882f4090c70 -address /run/containerd/containerd.sock
+root         339  0.0  0.0 1235188 15640 ?       Sl   Feb10   2:44 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 3002b681c6c948ccb75229279958a742b0d3f6c5971711e784e8ad933e7755e6 -address /run/containerd/containerd.sock
+65535        358  0.0  0.0    796   500 ?        Ss   Feb10   0:00 /pause
+65535        374  0.0  0.0    796   504 ?        Ss   Feb10   0:00 /pause
+65535        384  0.0  0.0    796   500 ?        Ss   Feb10   0:00 /pause
+65535        413  0.0  0.0    796   500 ?        Ss   Feb10   0:00 /pause
+root         510  1.0  0.4 1274440 67644 ?       Ssl  Feb10  56:29 kube-scheduler --authentication-kubeconfig=/etc/kubernetes/scheduler.conf --authorization-kubeconfig=/etc/kubernetes/scheduler.conf --bind-address=127.0.0.1 --kubeconfig=/etc/kubernetes/scheduler.conf --leader-elect=true
+root         536  1.9  0.8 1362840 135452 ?      Ssl  Feb10 107:37 kube-controller-manager --allocate-node-cidrs=true --authentication-kubeconfig=/etc/kubernetes/controller-manager.conf --authorization-kubeconfig=/etc/kubernetes/controller-manager.conf --bind-address=127.0.0.1 --client-ca-file=/etc/kubernetes/pki/ca.crt --cluster-cidr=10.244.0.0/16 --cluster-name=kind --cluster-signing-cert-file=/etc/kubernetes/pki/ca.crt --cluster-signing-key-file=/etc/kubernetes/pki/ca.key --controllers=*,bootstrapsigner,tokencleaner --enable-hostpath-provisioner=true --kubeconfig=/etc/kubernetes/controller-manager.conf --leader-elect=true --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt --root-ca-file=/etc/kubernetes/pki/ca.crt --service-account-private-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16 --use-service-account-credentials=true
+root         556  5.8  2.8 1654972 459804 ?      Ssl  Feb10 317:02 kube-apiserver --advertise-address=172.18.0.2 --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-file=/etc/kubernetes/pki/ca.crt --enable-admission-plugins=NodeRestriction --enable-bootstrap-token-auth=true --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key --etcd-servers=https://127.0.0.1:2379 --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key --requestheader-allowed-names=front-proxy-client --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group --requestheader-username-headers=X-Remote-User --runtime-config= --secure-port=6443 --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/sa.pub --service-account-signing-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16 --tls-cert-file=/etc/kubernetes/pki/apiserver.crt --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
+root         581  2.6  0.5 11740900 88452 ?      Ssl  Feb10 143:20 etcd --advertise-client-urls=https://172.18.0.2:2379 --cert-file=/etc/kubernetes/pki/etcd/server.crt --client-cert-auth=true --data-dir=/var/lib/etcd --feature-gates=InitialCorruptCheck=true --initial-advertise-peer-urls=https://172.18.0.2:2380 --initial-cluster=kind-control-plane=https://172.18.0.2:2380 --key-file=/etc/kubernetes/pki/etcd/server.key --listen-client-urls=https://127.0.0.1:2379,https://172.18.0.2:2379 --listen-metrics-urls=http://127.0.0.1:2381 --listen-peer-urls=https://172.18.0.2:2380 --name=kind-control-plane --peer-cert-file=/etc/kubernetes/pki/etcd/peer.crt --peer-client-cert-auth=true --peer-key-file=/etc/kubernetes/pki/etcd/peer.key --peer-trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt --snapshot-count=10000 --trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt --watch-progress-notify-interval=5s
+root         699  4.6  0.6 3797848 111208 ?      Ssl  Feb10 255:51 /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf --config=/var/lib/kubelet/config.yaml --node-ip=172.18.0.2 --node-labels= --provider-id=kind://docker/kind/kind-control-plane --runtime-cgroups=/system.slice/containerd.service
+root         848  0.0  0.0 1234932 15652 ?       Sl   Feb10   3:18 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 9b6dc349f62f5e59c38ccaa75883e7a590e47769bd593d38dd447db668376a99 -address /run/containerd/containerd.sock
+root         864  0.0  0.0 1235188 15948 ?       Sl   Feb10   3:03 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 6b251c82824994e621f3051226759cc18a594cd39400685917083b371e9664fd -address /run/containerd/containerd.sock
+65535        902  0.0  0.0    796   504 ?        Ss   Feb10   0:00 /pause
+65535        905  0.0  0.0    796   500 ?        Ss   Feb10   0:00 /pause
+root         944  0.0  0.3 1268776 51352 ?       Ssl  Feb10   5:17 /usr/local/bin/kube-proxy --config=/var/lib/kube-proxy/config.conf --hostname-override=kind-control-plane
+root        1034  0.0  0.3 1279808 53548 ?       Ssl  Feb10   4:34 /bin/kindnetd
+root        1281  0.0  0.1 1235188 16432 ?       Sl   Feb10   3:08 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 5f890c3484e2b6eeb6ad1faf4dc1e455b43b324578a0c4ec3f0650daad637226 -address /run/containerd/containerd.sock
+root        1283  0.0  0.0 1234932 15696 ?       Sl   Feb10   3:07 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 5dab8de1ef9a0908a2125e987d3bdfe154a982cdb928b24b7a1aff296ca4a217 -address /run/containerd/containerd.sock
+root        1310  0.0  0.0 1234932 15944 ?       Sl   Feb10   3:08 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id b678afa701b27d9499ad799ae396018fd8cbaed4e5c78f0e2379f9e404eea320 -address /run/containerd/containerd.sock
+65535       1357  0.0  0.0    796   500 ?        Ss   Feb10   0:00 /pause
+65535       1359  0.0  0.0    796   500 ?        Ss   Feb10   0:00 /pause
+65535       1372  0.0  0.0    796   500 ?        Ss   Feb10   0:00 /pause
+65532       1497  0.3  0.4 1298224 65756 ?       Ssl  Feb10  17:58 /coredns -conf /etc/coredns/Corefile
+65532       1500  0.3  0.4 1298736 66372 ?       Ssl  Feb10  17:41 /coredns -conf /etc/coredns/Corefile
+root        1571  0.0  0.2 1276456 46592 ?       Ssl  Feb10   3:39 local-path-provisioner --debug start --helper-image docker.io/kindest/local-path-helper:v20251211-v0.29.0-alpha-100-g82a92c5d --config /etc/config/config.json
+root        2198  0.0  0.1 1234932 16596 ?       Sl   Feb10   3:00 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id f19b5131fba0f7e16ed3504242ad3a61522b95ab26848c4c62d529975c25988f -address /run/containerd/containerd.sock
+65535       2220  0.0  0.0    796   500 ?        Ss   Feb10   0:00 /pause
+999         2246  0.0  0.0   2356  1116 ?        Ss   Feb10   0:22 /sbin/tini -- /usr/local/bin/argocd-applicationset-controller --metrics-addr=:8080 --probe-addr=:8081 --webhook-addr=:7000
+999         2433  0.1  0.6 1374136 111100 ?      Sl   Feb10   7:08 /usr/local/bin/argocd-applicationset-controller --metrics-addr=:8080 --probe-addr=:8081 --webhook-addr=:7000
+root        2450  0.0  0.0 1235188 15944 ?       Sl   Feb10   2:20 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 3ccd5f53ab4fab71a4b37fb78c4cd8e2a477b9eed3b3b67d7964cd047ab4ca2e -address /run/containerd/containerd.sock
+root        2483  0.0  0.1 1235188 16888 ?       Sl   Feb10   2:53 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id b69e76846c9c9242d7fb7be5b739507b2f1662544ea2623f74dbb72aabf13290 -address /run/containerd/containerd.sock
+root        2498  0.0  0.0 1235188 14880 ?       Sl   Feb10   3:03 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 4a3ea8b6fb4c75d6582da038a213402d292b662e08e856d9f1a1d0ddbb2cdb16 -address /run/containerd/containerd.sock
+root        2551  0.0  0.1 1235188 16376 ?       Sl   Feb10   3:00 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 41a94826ca5cb60f37024d999b1e63f4bb55a5d97d6f8c6a69cf3213bba34ad9 -address /run/containerd/containerd.sock
+root        2563  0.0  0.1 1234932 16500 ?       Sl   Feb10   2:37 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 62c27f03141f3f7f774006747abc640a6d8f32e9877516d43544564824de8328 -address /run/containerd/containerd.sock
+root        2565  0.0  0.1 1234932 16736 ?       Sl   Feb10   2:44 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id cc5d55499db5aac2866c769fafba2224922d4dddb731c7402dbc1ee1f7f1b600 -address /run/containerd/containerd.sock
+999         2624  0.0  0.0    796   500 ?        Ss   Feb10   0:00 /pause
+65535       2657  0.0  0.0    796   504 ?        Ss   Feb10   0:00 /pause
+65535       2662  0.0  0.0    796   504 ?        Ss   Feb10   0:00 /pause
+65535       2665  0.0  0.0    796   500 ?        Ss   Feb10   0:00 /pause
+65535       2677  0.0  0.0    796   500 ?        Ss   Feb10   0:00 /pause
+65535       2680  0.0  0.0    796   500 ?        Ss   Feb10   0:00 /pause
+999         2787  0.0  0.0   2356  1112 ?        Ss   Feb10   0:21 /sbin/tini -- /usr/local/bin/argocd-notifications --metrics-port=9001 --namespace=argocd --argocd-repo-server=argo-cd-argocd-repo-server:8081 --secret-name=argocd-notifications-secret
+999         2797  0.0  0.0   2356  1100 ?        Ss   Feb10   0:23 /sbin/tini -- /usr/local/bin/argocd-application-controller --metrics-port=8082
+999         2817  0.0  0.0   2356  1112 ?        Ss   Feb10   0:22 /sbin/tini -- /usr/local/bin/argocd-server --port=8080 --metrics-port=8083
+999         2847  0.0  0.6 1375160 104076 ?      Sl   Feb10   3:51 /usr/local/bin/argocd-notifications --metrics-port=9001 --namespace=argocd --argocd-repo-server=argo-cd-argocd-repo-server:8081 --secret-name=argocd-notifications-secret
+999         2869  0.1  0.7 1375416 117448 ?      Sl   Feb10  10:25 /usr/local/bin/argocd-application-controller --metrics-port=8082
+999         2892  0.2  0.9 1441280 147936 ?      Sl   Feb10  15:22 /usr/local/bin/argocd-server --port=8080 --metrics-port=8083
+999         2954  0.0  0.0   2356  1108 ?        Ss   Feb10   0:22 /sbin/tini -- /usr/local/bin/argocd-repo-server --port=8081 --metrics-port=8084
+999         2971  0.2  0.6 1374904 105176 ?      Sl   Feb10  11:00 /usr/local/bin/argocd-repo-server --port=8081 --metrics-port=8084
+999         2986  0.0  0.0 152876  3160 ?        Ss   Feb10   0:38 gpg-agent --homedir /app/config/gpg/keys --use-standard-socket --daemon
+999         3054  0.3  0.1 138444 18112 ?        Ssl  Feb10  19:56 /usr/bin/redis-server *:6379
+1001        3121  0.0  0.2 1375160 42952 ?       Ssl  Feb10   3:53 /shared/argocd-dex rundex
+root       74032  128  0.0   8048  3952 ?        Rs   23:34   0:00 ps aux
+
+## 9. SUID BINARIES (potential privilege escalation)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+/usr/bin/gpasswd
+/usr/bin/chfn
+/usr/bin/fusermount3
+/usr/bin/passwd
+/usr/bin/newgrp
+/usr/bin/su
+/usr/bin/chsh
+/usr/sbin/mount.nfs
+
+## 10. NETWORK CONFIGURATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OCI runtime exec failed: exec failed: unable to start container process: exec: "ifconfig": executable file not found in $PATH
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: tunl0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN group default qlen 1000
+    link/ipip 0.0.0.0 brd 0.0.0.0
+3: gre0@NONE: <NOARP> mtu 1476 qdisc noop state DOWN group default qlen 1000
+    link/gre 0.0.0.0 brd 0.0.0.0
+4: gretap0@NONE: <BROADCAST,MULTICAST> mtu 1462 qdisc noop state DOWN group default qlen 1000
+    link/ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff
+5: erspan0@NONE: <BROADCAST,MULTICAST> mtu 1450 qdisc noop state DOWN group default qlen 1000
+    link/ether 00:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff
+6: ip_vti0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN group default qlen 1000
+    link/ipip 0.0.0.0 brd 0.0.0.0
+7: ip6_vti0@NONE: <NOARP> mtu 1428 qdisc noop state DOWN group default qlen 1000
+    link/tunnel6 :: brd :: permaddr aafa:33dc:1ec4::
+8: sit0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN group default qlen 1000
+    link/sit 0.0.0.0 brd 0.0.0.0
+9: ip6tnl0@NONE: <NOARP> mtu 1452 qdisc noop state DOWN group default qlen 1000
+    link/tunnel6 :: brd :: permaddr ce23:97c8:fa9e::
+10: ip6gre0@NONE: <NOARP> mtu 1448 qdisc noop state DOWN group default qlen 1000
+    link/gre6 :: brd :: permaddr fac5:bf61:29fb::
+11: eth0@if69: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 65535 qdisc noqueue state UP group default 
+    link/ether 2a:87:4d:b5:2f:35 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 172.18.0.2/16 brd 172.18.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fc00:f853:ccd:e793::2/64 scope global nodad 
+       valid_lft forever preferred_lft forever
+    inet6 fe80::2887:4dff:feb5:2f35/64 scope link 
+       valid_lft forever preferred_lft forever
+12: vethb849e508@if11: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 65535 qdisc noqueue state UP group default 
+    link/ether 6a:51:74:3e:01:52 brd ff:ff:ff:ff:ff:ff link-netns cni-4aedd1fe-d6b5-7111-f888-948cd659027b
+    inet 10.244.0.1/32 scope global vethb849e508
+       valid_lft forever preferred_lft forever
+    inet6 fe80::6851:74ff:fe3e:152/64 scope link 
+       valid_lft forever preferred_lft forever
+13: vethda7c4b1b@if11: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 65535 qdisc noqueue state UP group default 
+    link/ether 4e:da:3d:b0:f3:79 brd ff:ff:ff:ff:ff:ff link-netns cni-efc5d219-4218-6de8-b893-49b70a566a0a
+    inet 10.244.0.1/32 scope global vethda7c4b1b
+       valid_lft forever preferred_lft forever
+    inet6 fe80::4cda:3dff:feb0:f379/64 scope link 
+       valid_lft forever preferred_lft forever
+14: veth3e5c2dbd@if11: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 65535 qdisc noqueue state UP group default 
+    link/ether 26:f0:0c:eb:60:e7 brd ff:ff:ff:ff:ff:ff link-netns cni-7d7480e9-71c8-9d8d-524f-018b27f4b5ba
+    inet 10.244.0.1/32 scope global veth3e5c2dbd
+       valid_lft forever preferred_lft forever
+    inet6 fe80::24f0:cff:feeb:60e7/64 scope link 
+       valid_lft forever preferred_lft forever
+16: vethfec9936f@if11: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 65535 qdisc noqueue state UP group default 
+    link/ether de:b4:d9:c0:b7:91 brd ff:ff:ff:ff:ff:ff link-netns cni-2b1d2871-a397-6952-61d5-034a8a45fe02
+    inet 10.244.0.1/32 scope global vethfec9936f
+       valid_lft forever preferred_lft forever
+    inet6 fe80::dcb4:d9ff:fec0:b791/64 scope link 
+       valid_lft forever preferred_lft forever
+17: vetha2372f77@if11: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 65535 qdisc noqueue state UP group default 
+    link/ether b2:a6:f2:4f:10:c1 brd ff:ff:ff:ff:ff:ff link-netns cni-3fcf379a-0d0a-3cbb-e381-8aba72285330
+    inet 10.244.0.1/32 scope global vetha2372f77
+       valid_lft forever preferred_lft forever
+    inet6 fe80::b0a6:f2ff:fe4f:10c1/64 scope link 
+       valid_lft forever preferred_lft forever
+18: veth71033415@if11: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 65535 qdisc noqueue state UP group default 
+    link/ether 5a:98:6c:9e:c3:e6 brd ff:ff:ff:ff:ff:ff link-netns cni-2cf75dc6-3de4-fb03-2d26-c43d86f089b2
+    inet 10.244.0.1/32 scope global veth71033415
+       valid_lft forever preferred_lft forever
+    inet6 fe80::5898:6cff:fe9e:c3e6/64 scope link 
+       valid_lft forever preferred_lft forever
+19: veth77e08d9e@if11: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 65535 qdisc noqueue state UP group default 
+    link/ether 6e:83:87:2e:2e:ac brd ff:ff:ff:ff:ff:ff link-netns cni-30d0c1a1-a065-9ff4-956c-3525ee6dc23e
+    inet 10.244.0.1/32 scope global veth77e08d9e
+       valid_lft forever preferred_lft forever
+    inet6 fe80::6c83:87ff:fe2e:2eac/64 scope link 
+       valid_lft forever preferred_lft forever
+20: veth215d6427@if11: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 65535 qdisc noqueue state UP group default 
+    link/ether c2:ca:7a:7b:60:61 brd ff:ff:ff:ff:ff:ff link-netns cni-a4f501c1-b66a-53d8-faf7-fe921649d463
+    inet 10.244.0.1/32 scope global veth215d6427
+       valid_lft forever preferred_lft forever
+    inet6 fe80::c0ca:7aff:fe7b:6061/64 scope link 
+       valid_lft forever preferred_lft forever
+21: veth19b1d37e@if11: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 65535 qdisc noqueue state UP group default 
+    link/ether ba:8f:62:ca:76:07 brd ff:ff:ff:ff:ff:ff link-netns cni-12c836dd-b145-3ed5-8f62-888406ad5e50
+    inet 10.244.0.1/32 scope global veth19b1d37e
+       valid_lft forever preferred_lft forever
+    inet6 fe80::b88f:62ff:feca:7607/64 scope link 
+       valid_lft forever preferred_lft forever
+22: veth347399df@if11: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 65535 qdisc noqueue state UP group default 
+    link/ether 62:bd:60:3c:74:22 brd ff:ff:ff:ff:ff:ff link-netns cni-b9919f63-395e-66e0-2a92-0e6aa052e037
+    inet 10.244.0.1/32 scope global veth347399df
+       valid_lft forever preferred_lft forever
+    inet6 fe80::60bd:60ff:fe3c:7422/64 scope link 
+       valid_lft forever preferred_lft forever
+

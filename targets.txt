@@ -1,0 +1,18 @@
+# Authorized Container Targets for Security Testing
+# Local Lab Environment Only
+# Generated: 2026-02-13
+
+golang:latest
+openjdk:17
+nginx
+node
+python
+bitnami/redis:8.2.1
+bitnami/redis-exporter:1.76.0
+bitnami/redis-sentinel:8.2.1
+busybox
+ghcr.io/external-secrets/external-secrets:main
+otel/opentelemetry-collector:latest
+registry.k8s.io/kube-state-metrics:v1.9.5
+prom/prometheus:main
+tomcat

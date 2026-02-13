@@ -1,0 +1,74 @@
+CONTAINER SECURITY REPORT
+=========================
+Container: k3d-k3s-default-tools
+ID: 375720d45ec0
+Image: ghcr.io/k3d-io/k3d-tools:5.8.3
+Scan Date: Fri Feb 13 18:34:48 EST 2026
+
+## 1. PRIVILEGED MODE CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️  CRITICAL: Container is running in PRIVILEGED mode!
+   Impact: Can escape to host with full root access
+
+## 2. CAPABILITIES CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Added Capabilities: []
+Dropped Capabilities: []
+
+## 3. NAMESPACE SHARING CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PID Namespace: 
+IPC Namespace: private
+Network Mode: bridge
+
+## 4. VOLUME MOUNTS CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Source: /var/lib/docker/volumes/k3d-k3s-default-images/_data -> Dest: /k3d/images (z)
+Source: /run/host-services/docker.proxy.sock -> Dest: /var/run/docker.sock ()
+
+/var/lib/docker/volumes/k3d-k3s-default-images/_data|true
+/run/host-services/docker.proxy.sock|true
+⚠️  WARNING: Writable host filesystem mounts detected
+
+## 5. SECURITY OPTIONS CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Security Options: [label=disable]
+
+## 6. EXPOSED PORTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+## 7. ENVIRONMENT VARIABLES (filtered for secrets)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+No obvious secrets in env vars
+
+## 8. RUNNING PROCESSES (if accessible)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PID   USER     TIME  COMMAND
+    1 root      0:18 /sbin/docker-init -- /app/k3d-tools noop
+    7 root      0:03 /app/k3d-tools noop
+   18 root      0:00 ps aux
+
+## 9. SUID BINARIES (potential privilege escalation)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 10. NETWORK CONFIGURATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+eth0      Link encap:Ethernet  HWaddr BE:B2:26:8A:2D:B8  
+          inet addr:172.19.0.2  Bcast:172.19.255.255  Mask:255.255.0.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:19 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:3 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:1466 (1.4 KiB)  TX bytes:126 (126.0 B)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+

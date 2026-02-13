@@ -1,0 +1,69 @@
+CONTAINER SECURITY REPORT
+=========================
+Container: javascript-app
+ID: 02b2f248598e
+Image: bba400f391bb
+Scan Date: Fri Feb 13 18:34:38 EST 2026
+
+## 1. PRIVILEGED MODE CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Container is not privileged
+
+## 2. CAPABILITIES CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Added Capabilities: []
+Dropped Capabilities: []
+
+## 3. NAMESPACE SHARING CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PID Namespace: 
+IPC Namespace: private
+Network Mode: mike-libraries_app-network
+
+## 4. VOLUME MOUNTS CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+## 5. SECURITY OPTIONS CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Security Options: []
+
+## 6. EXPOSED PORTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+3000/tcp -> 3000
+
+
+## 7. ENVIRONMENT VARIABLES (filtered for secrets)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+NPM_TOKEN=
+NPM_PASSWORD=eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL2lzc3Vlci5lbmZvcmNlLmRldiIsImV4cCI6MTgwMTI1MjA0MywiaWF0IjoxNzcwMDQwMDQzLCJpc3MiOiJodHRwczovL3B1bGx0b2tlbi5pc3N1ZXIuY2hhaW5ndWFyZC5kZXYiLCJzdWIiOiJwdWxsLXRva2VuLTI0NjlmODQzYWZiNzJhYTM5NTlmNzJhYWZhNjA4ZTk4ODUzZWM3NGIifQ.gse_lkt3W35JURh1kvJ-BQJNPTbe7O3QEsYUkW7zbGGnqeZhPAFdSUUofGTt1qU32W9PVmxLw2mMJqeNsoe3N2nOJ818X7xoSrM5HV54ykiTK7s9ZC2VvBMvLvPr1GtKxI6v-d4qHxZwHF41gLxO6PxJe-D4E_KIQhhVevB7Jf5kpUtiyy5sq5FWsnCxYJFaH4nfKK4_pyzlKPmQ_7XFu1aj5kYENSeaXhcAg162ggWGQEPweA_COOoEP4yKod9Wyn6uAJfL8CLA0oKhXSSM8R-DpfXP0SQlKJ7FUQCXYFUp0UuhPk-bxFCGH3IfYc0wHtShggF8Wa633OdUyEQR7uANf2HHd0T_bsX2ZNlyTTX8BMWl05AYjXfQjmHrAVOkU85aeM99-0H5g2akMlHyoZbLzlP9vK4rKKmF9yePKxWHB93wct2JP9Wr73oUHvCOvSykURMBMEkOSTV4-eZ5MO1_TAyizSXI587YY9m1MFm4rHJSaMsQubRZurXIdKRmaA4zAeUll3tn5H1MkgkC1ApPcl2gQkWEZslkzBrzOS7kjQAxC78253wXB0LARM9yAUSjAyuMi5y1f3EXgWvLXP-QRj43NPNkDdCVBfv8oy_n9oqYSbozG0z6TcwXC_V8-l0XSV1phO5vxPrEbw5CAwAaKTj8OfTRWXDDjg1Y0qo
+
+## 8. RUNNING PROCESSES (if accessible)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PID   USER     TIME  COMMAND
+    1 root      0:34 node app.js
+   14 root      0:00 ps aux
+
+## 9. SUID BINARIES (potential privilege escalation)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 10. NETWORK CONFIGURATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+eth0      Link encap:Ethernet  HWaddr 06:AA:4E:4F:95:5C  
+          inet addr:172.20.0.4  Bcast:172.20.255.255  Mask:255.255.0.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:4739 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:3 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:199598 (194.9 KiB)  TX bytes:126 (126.0 B)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+

@@ -1,0 +1,62 @@
+CONTAINER SECURITY REPORT
+=========================
+Container: mike-co-postgresql-1
+ID: ba13c7d4a303
+Image: cgr.dev/mikeco.com/postgres:16
+Scan Date: Fri Feb 13 18:34:26 EST 2026
+
+## 1. PRIVILEGED MODE CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Container is not privileged
+
+## 2. CAPABILITIES CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Added Capabilities: []
+Dropped Capabilities: []
+
+## 3. NAMESPACE SHARING CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PID Namespace: 
+IPC Namespace: private
+Network Mode: mike-co_rag-network
+
+## 4. VOLUME MOUNTS CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Source: /var/lib/docker/volumes/mike-co_postgresql-data/_data -> Dest: /var/lib/postgresql/data (rw)
+
+/var/lib/docker/volumes/mike-co_postgresql-data/_data|true
+⚠️  WARNING: Writable host filesystem mounts detected
+
+## 5. SECURITY OPTIONS CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Security Options: []
+
+## 6. EXPOSED PORTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+5432/tcp -> 5432
+
+
+## 7. ENVIRONMENT VARIABLES (filtered for secrets)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+POSTGRES_PASSWORD=rag
+
+## 8. RUNNING PROCESSES (if accessible)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PID   USER     TIME  COMMAND
+    1 postgres  0:39 postgres
+   65 postgres  0:00 postgres: checkpointer 
+   66 postgres  0:11 postgres: background writer 
+   68 postgres  0:09 postgres: walwriter 
+   69 postgres  0:18 postgres: autovacuum launcher 
+   70 postgres  0:01 postgres: logical replication launcher 
+ 5188 root      0:00 ps aux
+
+## 9. SUID BINARIES (potential privilege escalation)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 10. NETWORK CONFIGURATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OCI runtime exec failed: exec failed: unable to start container process: exec: "ifconfig": executable file not found in $PATH
+OCI runtime exec failed: exec failed: unable to start container process: exec: "ip": executable file not found in $PATH
+Cannot access network config
+

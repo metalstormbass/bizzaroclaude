@@ -1,0 +1,54 @@
+CONTAINER SECURITY REPORT
+=========================
+Container: mike-co-nginx-1
+ID: cd76939898b1
+Image: mike-co-nginx
+Scan Date: Fri Feb 13 18:34:17 EST 2026
+
+## 1. PRIVILEGED MODE CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Container is not privileged
+
+## 2. CAPABILITIES CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Added Capabilities: []
+Dropped Capabilities: []
+
+## 3. NAMESPACE SHARING CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PID Namespace: 
+IPC Namespace: private
+Network Mode: mike-co_rag-network
+
+## 4. VOLUME MOUNTS CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+## 5. SECURITY OPTIONS CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Security Options: []
+
+## 6. EXPOSED PORTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+80/tcp -> 80
+
+
+## 7. ENVIRONMENT VARIABLES (filtered for secrets)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+No obvious secrets in env vars
+
+## 8. RUNNING PROCESSES (if accessible)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OCI runtime exec failed: exec failed: unable to start container process: exec: "ps": executable file not found in $PATH
+Cannot access process list
+
+## 9. SUID BINARIES (potential privilege escalation)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OCI runtime exec failed: exec failed: unable to start container process: exec: "find": executable file not found in $PATH
+
+## 10. NETWORK CONFIGURATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OCI runtime exec failed: exec failed: unable to start container process: exec: "ifconfig": executable file not found in $PATH
+OCI runtime exec failed: exec failed: unable to start container process: exec: "ip": executable file not found in $PATH
+Cannot access network config
+

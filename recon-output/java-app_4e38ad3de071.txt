@@ -1,0 +1,58 @@
+CONTAINER SECURITY REPORT
+=========================
+Container: java-app
+ID: 4e38ad3de071
+Image: ddf1fd95c619
+Scan Date: Fri Feb 13 18:34:35 EST 2026
+
+## 1. PRIVILEGED MODE CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Container is not privileged
+
+## 2. CAPABILITIES CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Added Capabilities: []
+Dropped Capabilities: []
+
+## 3. NAMESPACE SHARING CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PID Namespace: 
+IPC Namespace: private
+Network Mode: mike-libraries_app-network
+
+## 4. VOLUME MOUNTS CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+## 5. SECURITY OPTIONS CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Security Options: []
+
+## 6. EXPOSED PORTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+8080/tcp -> 8080
+
+
+## 7. ENVIRONMENT VARIABLES (filtered for secrets)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ARTIFACTORY_PASSWORD=your-artifactory-password
+MAVEN_PASSWORD=eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL2lzc3Vlci5lbmZvcmNlLmRldiIsImV4cCI6MTgwMTI1MTYzOSwiaWF0IjoxNzcwMDM5NjQxLCJpc3MiOiJodHRwczovL3B1bGx0b2tlbi5pc3N1ZXIuY2hhaW5ndWFyZC5kZXYiLCJzdWIiOiJwdWxsLXRva2VuLTE0ZGJlNjkzYzExY2IzOTJlNGFkYjQ1YzRlNDE2ZDcyMGYwMmI3YmQifQ.mwAyj61GvPFwg6Iuvm9VUdM2OruY1vi_adF52n6D2WZc_EaN_2MeSBWzRrhcjkg9aqi8I_YIMeHZrbyg28U7F3zHF5apZ3TY37ukSMFi1Ce-tGT88kaVkXdg2NbWiUmfMukSM--xUyVpSDrwpw6Rkhdsdb4uLzxJEpl5B5W-DwtmoyUHG_Qpmt6_mr26EvyFDGr6zYM9FhFsDfiLeZdR3D6T5Q9Gv3maqWMCavfvn_QKx3gT8ZmKd-sZ04LLLHOiMANsyAo-paJfYr8NPLYA1cUBW9SdPkp4WjUFBH5uItTQvSFv_EFfnJWVvMVOns3URBK9FOLq_SyQEZt2esu0iQcLnDbNhk0rqB8CIQI4amxAchZKj85QlwhAwZP-Auh6YW4lpyAZFP4FOHZ76GLmfwKgs6ilMVERKHlYm-909xc9sQnGagoH473hWjlM5pRvXo3cdC74Hwur0mQhisxC9Dg0XtRmZ0LbxOg870NS-p24umpCsayCQCcscpZHF4mWiVLvEsWSDkcf9cruHJ1IXcjp0Zaov9fFJDiH6zNri7_eClZcho1SUq72v8x5kcCotclOPTO_2jf3GbYaeiu_cSj6aLF4BT7WQByFlqF6wk5dgfcqYAnsJL45wd64Wn73hpHU4lLHRpbISzPLPpMP7Ayhv93bRo3FN7rAWoH5zaM
+GITHUB_TOKEN=your-github-token
+CODEARTIFACT_AUTH_TOKEN=your-codeartifact-token
+NEXUS_PASSWORD=your-nexus-password
+
+## 8. RUNNING PROCESSES (if accessible)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PID   USER     TIME  COMMAND
+    1 java     12:59 java -jar app.jar
+ 2524 java      0:00 ps aux
+
+## 9. SUID BINARIES (potential privilege escalation)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+## 10. NETWORK CONFIGURATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OCI runtime exec failed: exec failed: unable to start container process: exec: "ifconfig": executable file not found in $PATH
+OCI runtime exec failed: exec failed: unable to start container process: exec: "ip": executable file not found in $PATH
+Cannot access network config
+
