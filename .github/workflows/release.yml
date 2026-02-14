@@ -48,6 +48,9 @@ jobs:
           go generate ./pkg/config/...
           git diff --exit-code docs/DIRECTORY_STRUCTURE.md
           echo "All pre-release checks passed!"
+        env:
+          TMUX_TESTS: "1"
+          GITHUB_ACTIONS: true
 
   # Build release binaries for multiple platforms
   build-release:
