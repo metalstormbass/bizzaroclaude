@@ -1,0 +1,222 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to release (e.g., v1.0.0)'
+        required: true
+        type: string
+
+jobs:
+  # Build and test before release
+  pre-release-checks:
+    name: Pre-Release Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache: true
+
+      - name: Install tmux
+        run: sudo apt-get update && sudo apt-get install -y tmux
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "ci@github.actions"
+          git config --global user.name "GitHub Actions"
+
+      - name: Run all checks
+        run: |
+          echo "==> Building..."
+          go build -v ./...
+          echo "==> Running unit tests..."
+          go test -v ./internal/... ./pkg/...
+          echo "==> Running E2E tests..."
+          go test -v ./test/...
+          echo "==> Verifying docs..."
+          go generate ./pkg/config/...
+          git diff --exit-code docs/DIRECTORY_STRUCTURE.md
+          echo "All pre-release checks passed!"
+
+  # Build release binaries for multiple platforms
+  build-release:
+    name: Build Release Binaries
+    needs: pre-release-checks
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - goos: linux
+            goarch: amd64
+            name: linux-amd64
+          - goos: linux
+            goarch: arm64
+            name: linux-arm64
+          - goos: darwin
+            goarch: amd64
+            name: darwin-amd64
+          - goos: darwin
+            goarch: arm64
+            name: darwin-arm64
+          - goos: windows
+            goarch: amd64
+            name: windows-amd64
+            ext: .exe
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache: true
+
+      - name: Get version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            VERSION="${{ github.event.inputs.tag }}"
+          else
+            VERSION="${GITHUB_REF#refs/tags/}"
+          fi
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "Building version: ${VERSION}"
+
+      - name: Build binary
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+          CGO_ENABLED: 0
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          BINARY_NAME="bizzaroclaude-${VERSION}-${{ matrix.name }}${{ matrix.ext }}"
+          go build -v -trimpath -ldflags="-s -w -X main.Version=${VERSION}" -o "${BINARY_NAME}" ./cmd/bizzaroclaude
+
+          # Create checksum
+          if [ "${{ matrix.goos }}" = "windows" ]; then
+            sha256sum "${BINARY_NAME}" > "${BINARY_NAME}.sha256"
+          else
+            shasum -a 256 "${BINARY_NAME}" > "${BINARY_NAME}.sha256"
+          fi
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: bizzaroclaude-${{ matrix.name }}
+          path: |
+            bizzaroclaude-*
+            !bizzaroclaude-*.sha256
+          retention-days: 7
+
+      - name: Upload checksums
+        uses: actions/upload-artifact@v4
+        with:
+          name: checksums-${{ matrix.name }}
+          path: bizzaroclaude-*.sha256
+          retention-days: 7
+
+  # Create GitHub release with binaries
+  create-release:
+    name: Create Release
+    needs: build-release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            VERSION="${{ github.event.inputs.tag }}"
+          else
+            VERSION="${GITHUB_REF#refs/tags/}"
+          fi
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "Creating release: ${VERSION}"
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Prepare release assets
+        run: |
+          mkdir -p release
+          find artifacts -type f -name "bizzaroclaude-*" -exec cp {} release/ \;
+          ls -lh release/
+
+      - name: Generate release notes
+        id: release_notes
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          echo "# bizzaroclaude ${VERSION}" > RELEASE_NOTES.md
+          echo "" >> RELEASE_NOTES.md
+          echo "## What's Changed" >> RELEASE_NOTES.md
+          echo "" >> RELEASE_NOTES.md
+
+          # Get commits since last tag
+          PREVIOUS_TAG=$(git describe --abbrev=0 --tags ${VERSION}^ 2>/dev/null || echo "")
+          if [ -n "$PREVIOUS_TAG" ]; then
+            echo "Changes since ${PREVIOUS_TAG}:" >> RELEASE_NOTES.md
+            echo "" >> RELEASE_NOTES.md
+            git log --pretty=format:"* %s (%h)" ${PREVIOUS_TAG}..${VERSION} >> RELEASE_NOTES.md
+          else
+            echo "Initial release" >> RELEASE_NOTES.md
+          fi
+
+          echo "" >> RELEASE_NOTES.md
+          echo "## Installation" >> RELEASE_NOTES.md
+          echo "" >> RELEASE_NOTES.md
+          echo "\`\`\`bash" >> RELEASE_NOTES.md
+          echo "# Download for your platform" >> RELEASE_NOTES.md
+          echo "# Linux AMD64" >> RELEASE_NOTES.md
+          echo "curl -L https://github.com/\${{ github.repository }}/releases/download/${VERSION}/bizzaroclaude-${VERSION}-linux-amd64 -o bizzaroclaude" >> RELEASE_NOTES.md
+          echo "chmod +x bizzaroclaude" >> RELEASE_NOTES.md
+          echo "" >> RELEASE_NOTES.md
+          echo "# macOS ARM64 (Apple Silicon)" >> RELEASE_NOTES.md
+          echo "curl -L https://github.com/\${{ github.repository }}/releases/download/${VERSION}/bizzaroclaude-${VERSION}-darwin-arm64 -o bizzaroclaude" >> RELEASE_NOTES.md
+          echo "chmod +x bizzaroclaude" >> RELEASE_NOTES.md
+          echo "\`\`\`" >> RELEASE_NOTES.md
+
+          cat RELEASE_NOTES.md
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          name: ${{ steps.version.outputs.version }}
+          body_path: RELEASE_NOTES.md
+          draft: false
+          prerelease: false
+          files: release/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Optional: Notify on release
+  notify:
+    name: Notify Release
+    needs: create-release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release notification
+        run: |
+          VERSION="${{ needs.create-release.outputs.version }}"
+          echo "Release ${VERSION} created successfully!"
+          echo "View at: https://github.com/${{ github.repository }}/releases/tag/${VERSION}"

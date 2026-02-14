@@ -1,5 +1,10 @@
 # bizzaroclaude
 
+[![CI](https://github.com/dlorenc/bizzaroclaude/actions/workflows/ci.yml/badge.svg)](https://github.com/dlorenc/bizzaroclaude/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/dlorenc/bizzaroclaude/actions/workflows/codeql.yml/badge.svg)](https://github.com/dlorenc/bizzaroclaude/actions/workflows/codeql.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/dlorenc/bizzaroclaude)](https://goreportcard.com/report/github.com/dlorenc/bizzaroclaude)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 > *Why test one way when you can test every way simultaneously?*
 
 Multiple autonomous pentesting agents. Local containers. Coordinated chaos.
