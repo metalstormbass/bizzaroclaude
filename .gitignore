@@ -1,5 +1,6 @@
 # Binaries
 multiclaude
+bizzaroclaude
 *.exe
 *.dll
 *.so

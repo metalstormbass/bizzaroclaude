@@ -8,7 +8,13 @@ import (
 	"github.com/dlorenc/bizzaroclaude/internal/errors"
 )
 
+// Version is set at build time via ldflags
+var Version = "dev"
+
 func main() {
+	// Set the version in the CLI package
+	cli.Version = Version
+
 	if err := run(); err != nil {
 		fmt.Fprintln(os.Stderr, errors.Format(err))
 		os.Exit(1)

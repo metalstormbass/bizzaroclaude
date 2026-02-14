@@ -28,12 +28,38 @@ Multiple agents work simultaneously using different approaches. They might dupli
 
 ## Quick Start
 
+### Installation
+
+**Option 1: Install from source (requires Go 1.21+)**
 ```bash
-# Install
 go install github.com/dlorenc/bizzaroclaude/cmd/bizzaroclaude@latest
+```
 
-# Prerequisites: tmux, docker (for container targets)
+**Option 2: Download pre-built binary**
 
+Visit the [releases page](https://github.com/dlorenc/bizzaroclaude/releases) to download the latest binary for your platform, or use these quick install scripts:
+
+```bash
+# Linux AMD64
+VERSION=$(curl -s https://api.github.com/repos/dlorenc/bizzaroclaude/releases/latest | grep tag_name | cut -d '"' -f 4)
+curl -L "https://github.com/dlorenc/bizzaroclaude/releases/download/${VERSION}/bizzaroclaude-${VERSION}-linux-amd64" -o bizzaroclaude
+chmod +x bizzaroclaude
+sudo mv bizzaroclaude /usr/local/bin/
+
+# macOS ARM64 (Apple Silicon)
+VERSION=$(curl -s https://api.github.com/repos/dlorenc/bizzaroclaude/releases/latest | grep tag_name | cut -d '"' -f 4)
+curl -L "https://github.com/dlorenc/bizzaroclaude/releases/download/${VERSION}/bizzaroclaude-${VERSION}-darwin-arm64" -o bizzaroclaude
+chmod +x bizzaroclaude
+sudo mv bizzaroclaude /usr/local/bin/
+```
+
+Available platforms: Linux (amd64/arm64), macOS (amd64/arm64), Windows (amd64)
+
+**Prerequisites**: tmux, docker (for container targets)
+
+### Usage
+
+```bash
 # Fire it up
 bizzaroclaude start
 bizzaroclaude target init local-container-name
@@ -141,6 +167,7 @@ bizzaroclaude findings list --validated
 - **[Architecture](docs/ARCHITECTURE.md)** - System design and internals
 - **[Testing Workflows](docs/WORKFLOWS.md)** - Detailed examples and patterns
 - **[Tool Integration](docs/TOOLS.md)** - Integrating nmap, metasploit, etc.
+- **[Release Process](docs/RELEASE.md)** - How to create and publish releases
 
 ## Public Libraries
 
