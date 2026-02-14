@@ -1,11 +1,11 @@
-# Makefile for multiclaude - Local CI Guard Rails
+# Makefile for bizzaroclaude - Local CI Guard Rails
 # Run these targets to verify changes before pushing
 
 .PHONY: help build test unit-tests e2e-tests verify-docs coverage check-all pre-commit clean
 
 # Default target
 help:
-	@echo "Multiclaude Local CI Guard Rails"
+	@echo "bizzaroclaude Local CI Guard Rails"
 	@echo ""
 	@echo "Targets that mirror CI checks:"
 	@echo "  make build          - Build all packages (CI: Build job)"
