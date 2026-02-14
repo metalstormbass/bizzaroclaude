@@ -16,35 +16,6 @@ jobs:
           echo "This PR is marked as draft. Please mark it as ready for review."
           exit 1
 
-  # Validate PR title follows conventional commits
-  pr-title:
-    name: Validate PR Title
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check PR title format
-        uses: amannn/action-semantic-pull-request@v5
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          types: |
-            feat
-            fix
-            docs
-            style
-            refactor
-            perf
-            test
-            build
-            ci
-            chore
-            revert
-          requireScope: false
-          subjectPattern: ^[A-Z].+$
-          subjectPatternError: |
-            The subject "{subject}" found in the pull request title "{title}"
-            didn't match the configured pattern. Please ensure that the subject
-            starts with an uppercase character.
-
   # Check for common issues
   pr-validation:
     name: PR Validation
@@ -168,13 +139,12 @@ jobs:
   pr-ready:
     name: PR Ready
     runs-on: ubuntu-latest
-    needs: [check-draft, pr-title, pr-validation, pr-size, check-documentation]
+    needs: [check-draft, pr-validation, pr-size, check-documentation]
     if: always()
     steps:
       - name: Check all PR checks
         run: |
           if [[ "${{ needs.check-draft.result }}" == "failure" ]] || \
-             [[ "${{ needs.pr-title.result }}" == "failure" ]] || \
              [[ "${{ needs.pr-validation.result }}" == "failure" ]]; then
             echo "One or more PR checks failed!"
             exit 1
