@@ -14,10 +14,14 @@ func TestListAgentTemplates(t *testing.T) {
 
 	// Check that we have the expected templates
 	expected := map[string]bool{
+		"recon.md":       true,
+		"exploit.md":     true,
+		"privilege.md":   true,
+		"coordinator.md": true,
 		"merge-queue.md": true,
 		"pr-shepherd.md": true,
-		"worker.md":      true,
 		"reviewer.md":    true,
+		"worker.md":      true,
 	}
 
 	if len(templates) != len(expected) {
@@ -52,7 +56,7 @@ func TestCopyAgentTemplates(t *testing.T) {
 	}
 
 	// Verify all expected files exist and have content
-	expectedFiles := []string{"merge-queue.md", "pr-shepherd.md", "worker.md", "reviewer.md"}
+	expectedFiles := []string{"recon.md", "exploit.md", "privilege.md", "coordinator.md", "merge-queue.md", "pr-shepherd.md", "reviewer.md", "worker.md"}
 	for _, filename := range expectedFiles {
 		path := filepath.Join(destDir, filename)
 		info, err := os.Stat(path)
@@ -137,7 +141,7 @@ func TestCopyAgentTemplatesErrorHandling(t *testing.T) {
 		}
 
 		// Verify files were copied
-		expectedFiles := []string{"merge-queue.md", "worker.md", "reviewer.md"}
+		expectedFiles := []string{"recon.md", "exploit.md", "coordinator.md", "merge-queue.md", "reviewer.md", "worker.md"}
 		for _, filename := range expectedFiles {
 			path := filepath.Join(destDir, filename)
 			if _, err := os.Stat(path); os.IsNotExist(err) {
@@ -172,7 +176,7 @@ func TestCopyAgentTemplatesErrorHandling(t *testing.T) {
 		}
 
 		// Verify files were copied to current directory
-		expectedFiles := []string{"merge-queue.md", "worker.md", "reviewer.md"}
+		expectedFiles := []string{"recon.md", "exploit.md", "coordinator.md", "merge-queue.md", "reviewer.md", "worker.md"}
 		for _, filename := range expectedFiles {
 			if _, err := os.Stat(filename); os.IsNotExist(err) {
 				t.Errorf("Expected file %s does not exist", filename)

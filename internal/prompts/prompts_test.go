@@ -49,14 +49,14 @@ func TestGetDefaultPromptContent(t *testing.T) {
 
 	// Verify workspace prompt (hardcoded - has embedded content)
 	workspacePrompt := GetDefaultPrompt(state.AgentTypeWorkspace)
-	if !strings.Contains(workspacePrompt, "user's workspace") {
-		t.Error("workspace prompt should mention 'user's workspace'")
+	if !strings.Contains(workspacePrompt, "workspace agent") {
+		t.Error("workspace prompt should mention 'workspace agent'")
 	}
 	if !strings.Contains(workspacePrompt, "bizzaroclaude message send") {
 		t.Error("workspace prompt should document inter-agent messaging capabilities")
 	}
-	if !strings.Contains(workspacePrompt, "Spawning Workers") {
-		t.Error("workspace prompt should document worker spawning capabilities")
+	if !strings.Contains(workspacePrompt, "Launching Assessments") {
+		t.Error("workspace prompt should document security testing capabilities")
 	}
 
 	// Note: Worker, merge-queue, and review prompts are now configurable
