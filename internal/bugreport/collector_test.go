@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/dlorenc/bizzaroclaude/internal/state"
-	"github.com/dlorenc/bizzaroclaude/pkg/config"
+	"github.com/metalstormbass/bizzaroclaude/internal/state"
+	"github.com/metalstormbass/bizzaroclaude/pkg/config"
 )
 
 func TestCollector_Collect(t *testing.T) {

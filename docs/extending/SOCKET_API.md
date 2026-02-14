@@ -70,7 +70,7 @@ package main
 import (
     "fmt"
 
-    "github.com/dlorenc/bizzaroclaude/internal/socket"
+    "github.com/metalstormbass/bizzaroclaude/internal/socket"
 )
 
 func main() {

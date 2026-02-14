@@ -9,13 +9,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/dlorenc/bizzaroclaude/internal/hooks"
-	"github.com/dlorenc/bizzaroclaude/internal/messages"
-	"github.com/dlorenc/bizzaroclaude/internal/prompts"
-	"github.com/dlorenc/bizzaroclaude/internal/socket"
-	"github.com/dlorenc/bizzaroclaude/internal/state"
-	"github.com/dlorenc/bizzaroclaude/pkg/config"
-	"github.com/dlorenc/bizzaroclaude/pkg/tmux"
+	"github.com/metalstormbass/bizzaroclaude/internal/hooks"
+	"github.com/metalstormbass/bizzaroclaude/internal/messages"
+	"github.com/metalstormbass/bizzaroclaude/internal/prompts"
+	"github.com/metalstormbass/bizzaroclaude/internal/socket"
+	"github.com/metalstormbass/bizzaroclaude/internal/state"
+	"github.com/metalstormbass/bizzaroclaude/pkg/config"
+	"github.com/metalstormbass/bizzaroclaude/pkg/tmux"
 )
 
 func setupTestDaemon(t *testing.T) (*Daemon, func()) {

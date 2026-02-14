@@ -9,12 +9,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/dlorenc/bizzaroclaude/internal/daemon"
-	"github.com/dlorenc/bizzaroclaude/internal/messages"
-	"github.com/dlorenc/bizzaroclaude/internal/socket"
-	"github.com/dlorenc/bizzaroclaude/internal/state"
-	"github.com/dlorenc/bizzaroclaude/pkg/config"
-	"github.com/dlorenc/bizzaroclaude/pkg/tmux"
+	"github.com/metalstormbass/bizzaroclaude/internal/daemon"
+	"github.com/metalstormbass/bizzaroclaude/internal/messages"
+	"github.com/metalstormbass/bizzaroclaude/internal/socket"
+	"github.com/metalstormbass/bizzaroclaude/internal/state"
+	"github.com/metalstormbass/bizzaroclaude/pkg/config"
+	"github.com/metalstormbass/bizzaroclaude/pkg/tmux"
 )
 
 func TestParseFlags(t *testing.T) {

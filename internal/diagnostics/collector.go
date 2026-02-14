@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/dlorenc/bizzaroclaude/internal/state"
-	"github.com/dlorenc/bizzaroclaude/pkg/config"
+	"github.com/metalstormbass/bizzaroclaude/internal/state"
+	"github.com/metalstormbass/bizzaroclaude/pkg/config"
 )
 
 // Report contains all diagnostic information in machine-readable format

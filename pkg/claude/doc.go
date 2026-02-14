@@ -10,7 +10,7 @@
 //
 // # Installation
 //
-//	go get github.com/dlorenc/bizzaroclaude/pkg/claude
+//	go get github.com/metalstormbass/bizzaroclaude/pkg/claude
 //
 // # Requirements
 //
@@ -24,8 +24,8 @@
 //
 //	import (
 //	    "log"
-//	    "github.com/dlorenc/bizzaroclaude/pkg/claude"
-//	    "github.com/dlorenc/bizzaroclaude/pkg/tmux"
+//	    "github.com/metalstormbass/bizzaroclaude/pkg/claude"
+//	    "github.com/metalstormbass/bizzaroclaude/pkg/tmux"
 //	)
 //
 //	func main() {

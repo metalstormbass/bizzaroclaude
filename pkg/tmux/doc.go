@@ -9,7 +9,7 @@
 //
 // # Installation
 //
-//	go get github.com/dlorenc/bizzaroclaude/pkg/tmux
+//	go get github.com/metalstormbass/bizzaroclaude/pkg/tmux
 //
 // # Requirements
 //
@@ -23,7 +23,7 @@
 //	import (
 //	    "context"
 //	    "log"
-//	    "github.com/dlorenc/bizzaroclaude/pkg/tmux"
+//	    "github.com/metalstormbass/bizzaroclaude/pkg/tmux"
 //	)
 //
 //	func main() {

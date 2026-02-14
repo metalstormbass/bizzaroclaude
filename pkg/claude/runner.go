@@ -13,8 +13,8 @@
 //
 //	import (
 //	    "context"
-//	    "github.com/dlorenc/bizzaroclaude/pkg/claude"
-//	    "github.com/dlorenc/bizzaroclaude/pkg/tmux"
+//	    "github.com/metalstormbass/bizzaroclaude/pkg/claude"
+//	    "github.com/metalstormbass/bizzaroclaude/pkg/tmux"
 //	)
 //
 //	// Create a tmux client and claude runner

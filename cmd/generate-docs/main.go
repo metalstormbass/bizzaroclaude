@@ -13,7 +13,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/dlorenc/bizzaroclaude/pkg/config"
+	"github.com/metalstormbass/bizzaroclaude/pkg/config"
 )
 
 func main() {

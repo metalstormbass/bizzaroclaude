@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/dlorenc/bizzaroclaude/internal/state"
+	"github.com/metalstormbass/bizzaroclaude/internal/state"
 )
 
 func TestGetDefaultPrompt(t *testing.T) {

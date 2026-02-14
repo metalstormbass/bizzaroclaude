@@ -5,7 +5,7 @@ A Go library for programmatically running and interacting with Claude Code CLI.
 ## Installation
 
 ```bash
-go get github.com/dlorenc/bizzaroclaude/pkg/claude
+go get github.com/metalstormbass/bizzaroclaude/pkg/claude
 ```
 
 ## Quick Start
@@ -16,8 +16,8 @@ package main
 import (
     "context"
     "log"
-    "github.com/dlorenc/bizzaroclaude/pkg/claude"
-    "github.com/dlorenc/bizzaroclaude/pkg/tmux"
+    "github.com/metalstormbass/bizzaroclaude/pkg/claude"
+    "github.com/metalstormbass/bizzaroclaude/pkg/tmux"
 )
 
 func main() {
@@ -212,7 +212,7 @@ The runner constructs Claude commands with these flags:
 For building complex prompts, see the `pkg/claude/prompt` subpackage:
 
 ```go
-import "github.com/dlorenc/bizzaroclaude/pkg/claude/prompt"
+import "github.com/metalstormbass/bizzaroclaude/pkg/claude/prompt"
 
 builder := prompt.NewBuilder()
 builder.AddSection("Role", "You are a helpful coding assistant.")

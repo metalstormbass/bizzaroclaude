@@ -1,6 +1,6 @@
 # bizzaroclaude
 
-[![CI](https://github.com/dlorenc/bizzaroclaude/actions/workflows/ci.yml/badge.svg)](https://github.com/dlorenc/bizzaroclaude/actions/workflows/ci.yml)
+[![CI](https://github.com/metalstormbass/bizzaroclaude/actions/workflows/ci.yml/badge.svg)](https://github.com/metalstormbass/bizzaroclaude/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > *Why test one way when you can test every way simultaneously?*
@@ -10,8 +10,6 @@ Multiple autonomous pentesting agents. Local containers. Coordinated chaos.
 bizzaroclaude spawns autonomous security testing agents that coordinate, compete, and collaborate on container targets in your lab. Each agent gets its own tmux window and isolated workspace. You watch. They probe. Findings emerge.
 
 **⚠️ LAB USE ONLY:** This tool is designed exclusively for authorized security research in controlled lab environments on infrastructure you own and operate.
-
-**💡 Inspired by [multiclaude](https://github.com/dlorenc/multiclaude)** - A multi-agent GitHub repository orchestrator. bizzaroclaude adapts the parallel agent coordination concept for container security testing.
 
 ## The Philosophy: Parallel Discovery
 
@@ -32,23 +30,23 @@ Multiple agents work simultaneously using different approaches. They might dupli
 
 **Option 1: Install from source (requires Go 1.21+)**
 ```bash
-go install github.com/dlorenc/bizzaroclaude/cmd/bizzaroclaude@latest
+go install github.com/metalstormbass/bizzaroclaude/cmd/bizzaroclaude@latest
 ```
 
 **Option 2: Download pre-built binary**
 
-Visit the [releases page](https://github.com/dlorenc/bizzaroclaude/releases) to download the latest binary for your platform, or use these quick install scripts:
+Visit the [releases page](https://github.com/metalstormbass/bizzaroclaude/releases) to download the latest binary for your platform, or use these quick install scripts:
 
 ```bash
 # Linux AMD64
-VERSION=$(curl -s https://api.github.com/repos/dlorenc/bizzaroclaude/releases/latest | grep tag_name | cut -d '"' -f 4)
-curl -L "https://github.com/dlorenc/bizzaroclaude/releases/download/${VERSION}/bizzaroclaude-${VERSION}-linux-amd64" -o bizzaroclaude
+VERSION=$(curl -s https://api.github.com/repos/metalstormbass/bizzaroclaude/releases/latest | grep tag_name | cut -d '"' -f 4)
+curl -L "https://github.com/metalstormbass/bizzaroclaude/releases/download/${VERSION}/bizzaroclaude-${VERSION}-linux-amd64" -o bizzaroclaude
 chmod +x bizzaroclaude
 sudo mv bizzaroclaude /usr/local/bin/
 
 # macOS ARM64 (Apple Silicon)
-VERSION=$(curl -s https://api.github.com/repos/dlorenc/bizzaroclaude/releases/latest | grep tag_name | cut -d '"' -f 4)
-curl -L "https://github.com/dlorenc/bizzaroclaude/releases/download/${VERSION}/bizzaroclaude-${VERSION}-darwin-arm64" -o bizzaroclaude
+VERSION=$(curl -s https://api.github.com/repos/metalstormbass/bizzaroclaude/releases/latest | grep tag_name | cut -d '"' -f 4)
+curl -L "https://github.com/metalstormbass/bizzaroclaude/releases/download/${VERSION}/bizzaroclaude-${VERSION}-darwin-arm64" -o bizzaroclaude
 chmod +x bizzaroclaude
 sudo mv bizzaroclaude /usr/local/bin/
 ```
@@ -197,20 +195,6 @@ Requires: Go 1.21+, tmux, docker
 5. **Local Testing Only** - This version is designed for local container testing, not remote targets
 
 **This tool is for security research and education. Misuse may violate laws including the Computer Fraud and Abuse Act (CFAA) and similar laws worldwide.**
-
-## Acknowledgments
-
-**bizzaroclaude** is inspired by [multiclaude](https://github.com/dlorenc/multiclaude) by Dan Lorenc (@dlorenc). The original multiclaude pioneered the concept of coordinating multiple autonomous Claude Code agents working in parallel on GitHub repositories.
-
-bizzaroclaude adapts this innovative multi-agent orchestration pattern to a completely different domain: local container security testing and penetration testing research.
-
-Key concepts borrowed from multiclaude:
-- Multi-agent parallel coordination
-- Tmux-based agent isolation
-- Message passing between agents
-- The "Brownian Ratchet" philosophy of productive chaos
-
-Thank you to the multiclaude project for the inspiration and architectural foundation!
 
 ## License
 

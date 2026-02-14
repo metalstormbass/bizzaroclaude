@@ -204,7 +204,7 @@ import (
     "fmt"
     "os"
 
-    "github.com/dlorenc/bizzaroclaude/internal/state"
+    "github.com/metalstormbass/bizzaroclaude/internal/state"
 )
 
 func main() {

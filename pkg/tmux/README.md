@@ -18,7 +18,7 @@ Existing Go tmux libraries ([gotmux](https://github.com/GianlucaP106/gotmux), [g
 ## Installation
 
 ```bash
-go get github.com/dlorenc/bizzaroclaude/pkg/tmux
+go get github.com/metalstormbass/bizzaroclaude/pkg/tmux
 ```
 
 ## Quick Start
@@ -29,7 +29,7 @@ package main
 import (
     "context"
     "log"
-    "github.com/dlorenc/bizzaroclaude/pkg/tmux"
+    "github.com/metalstormbass/bizzaroclaude/pkg/tmux"
 )
 
 func main() {

@@ -6,8 +6,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **bizzaroclaude** is a lightweight orchestrator for running multiple Claude Code agents on container pentesting targets in controlled lab environments. Each agent runs in its own tmux window with an isolated workspace, enabling parallel autonomous security testing on local infrastructure.
 
-**Inspired by [multiclaude](https://github.com/dlorenc/multiclaude)**: This project adapts the multi-agent coordination architecture from multiclaude (a GitHub repository orchestrator) to the domain of container security testing. This is a standalone security research tool with no connection to GitHub operations.
-
 ### The Parallel Discovery Philosophy
 
 This project embraces coordinated exploration: multiple agents work simultaneously using different techniques, potentially duplicating effort or finding overlapping vulnerabilities. **Validation is the ratchet** - if a finding can be verified and reproduced, it gets reported. Progress is permanent.

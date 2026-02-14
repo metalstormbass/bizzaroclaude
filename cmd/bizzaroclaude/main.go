@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/dlorenc/bizzaroclaude/internal/cli"
-	"github.com/dlorenc/bizzaroclaude/internal/errors"
+	"github.com/metalstormbass/bizzaroclaude/internal/cli"
+	"github.com/metalstormbass/bizzaroclaude/internal/errors"
 )
 
 // Version is set at build time via ldflags

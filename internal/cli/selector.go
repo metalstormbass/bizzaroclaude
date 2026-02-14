@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/dlorenc/bizzaroclaude/internal/format"
+	"github.com/metalstormbass/bizzaroclaude/internal/format"
 )
 
 // SelectableItem represents an item that can be selected from a list

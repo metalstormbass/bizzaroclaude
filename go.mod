@@ -1,4 +1,4 @@
-module github.com/dlorenc/bizzaroclaude
+module github.com/metalstormbass/bizzaroclaude
 
 go 1.21
 

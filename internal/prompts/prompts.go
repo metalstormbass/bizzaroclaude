@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/dlorenc/bizzaroclaude/internal/prompts/commands"
-	"github.com/dlorenc/bizzaroclaude/internal/state"
+	"github.com/metalstormbass/bizzaroclaude/internal/prompts/commands"
+	"github.com/metalstormbass/bizzaroclaude/internal/state"
 )
 
 // AgentType is an alias for state.AgentType.

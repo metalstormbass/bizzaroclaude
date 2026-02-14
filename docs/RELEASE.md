@@ -247,7 +247,7 @@ Increment for bug fixes:
 
 ## Historical Releases
 
-View all releases at: [github.com/dlorenc/bizzaroclaude/releases](../../releases)
+View all releases at: [github.com/metalstormbass/bizzaroclaude/releases](../../releases)
 
 ## Questions?
 

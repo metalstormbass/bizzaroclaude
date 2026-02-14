@@ -222,7 +222,7 @@ git tag v1.0.0
 git push origin v1.0.0
 
 # CI automatically builds and releases
-# Check: https://github.com/dlorenc/bizzaroclaude/releases
+# Check: https://github.com/metalstormbass/bizzaroclaude/releases
 ```
 
 ### Monitoring CI
@@ -233,7 +233,7 @@ gh run view <run-id>
 gh run watch
 
 # Via GitHub Web UI
-# https://github.com/dlorenc/bizzaroclaude/actions
+# https://github.com/metalstormbass/bizzaroclaude/actions
 ```
 
 ## Validation Checklist
