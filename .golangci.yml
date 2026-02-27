@@ -1,93 +1,92 @@
+version: "2"
+
 linters:
   enable:
     - gocritic
     - misspell
     - errcheck
     - staticcheck
-    - gosimple
     - unused
     - ineffassign
-    - typecheck
-
-linters-settings:
-  errcheck:
-    # Don't check type assertions (too noisy for map access patterns)
-    check-type-assertions: false
-    # Exclude common patterns where ignoring errors is acceptable
-    exclude-functions:
-      # File operations that are safe to ignore in defer
-      - (io.Closer).Close
-      - (*os.File).Close
-      - (net.Conn).Close
-      - (net.Listener).Close
-      - (*net.UnixConn).Close
-      - (*net.UnixListener).Close
-      # Exec commands in cleanup contexts
-      - (*os/exec.Cmd).Run
-      # Printf-like functions where errors are typically ignored
-      - (*github.com/fatih/color.Color).Printf
-      - (*github.com/fatih/color.Color).Print
-      - fmt.Printf
-      - fmt.Println
-      - fmt.Print
-      - fmt.Scanln
-      - fmt.Sscanf
-      # JSON encoding where error handling is optional
-      - (*encoding/json.Encoder).Encode
-      # OS operations that are best-effort cleanup
-      - os.Remove
-      - os.RemoveAll
-      - os.Setenv
-      - os.Unsetenv
-      - os.Chdir
-      - os.Chmod
-      - os.MkdirAll
-      - os.WriteFile
-      # Daemon/server stop operations in cleanup
-      - (*github.com/metalstormbass/bizzaroclaude/internal/daemon.Daemon).Stop
-      - (*github.com/metalstormbass/bizzaroclaude/internal/daemon.Daemon).Start
-      # Tmux cleanup operations
-      - (*github.com/metalstormbass/bizzaroclaude/pkg/tmux.Client).KillSession
-      - (*github.com/metalstormbass/bizzaroclaude/pkg/tmux.Client).KillWindow
-      - (*github.com/metalstormbass/bizzaroclaude/pkg/tmux.Client).SendKeysLiteral
-      # State operations that are often best-effort
-      - (*github.com/metalstormbass/bizzaroclaude/internal/state.State).AddRepo
-      - (*github.com/metalstormbass/bizzaroclaude/internal/state.State).AddAgent
-      - (*github.com/metalstormbass/bizzaroclaude/internal/state.State).RemoveAgent
-      - (*github.com/metalstormbass/bizzaroclaude/internal/state.State).UpdateAgent
-      - (*github.com/metalstormbass/bizzaroclaude/internal/state.State).ClearAllAgents
-      - (*github.com/metalstormbass/bizzaroclaude/internal/state.State).Save
-      - (*github.com/metalstormbass/bizzaroclaude/internal/state.State).SetCurrentRepo
-      # Worktree removal in cleanup
-      - (*github.com/metalstormbass/bizzaroclaude/internal/worktree.Manager).Remove
-      # CLI operations in tests
-      - (*github.com/metalstormbass/bizzaroclaude/internal/cli.CLI).Execute
-      - (*github.com/metalstormbass/bizzaroclaude/internal/cli.CLI).showVersion
-      - (*github.com/metalstormbass/bizzaroclaude/internal/cli.CLI).showHelp
-      # Socket server cleanup
-      - (*github.com/metalstormbass/bizzaroclaude/internal/socket.Server).Stop
-      - (*github.com/metalstormbass/bizzaroclaude/internal/socket.Server).Serve
-      # Logger cleanup
-      - (*github.com/metalstormbass/bizzaroclaude/internal/logging.Logger).Close
-  gocritic:
-    disabled-checks:
-      # Allow if-else chains for simple conditions
-      - ifElseChain
-      # Allow deprecation comments in various formats
-      - deprecatedComment
-      # Allow else { if } patterns in some cases
-      - elseif
-  staticcheck:
-    checks:
-      - all
-      # Disable strict style checks
-      - -ST1000  # Package comments - not critical for internal packages
-      - -ST1020  # Method comment form - too strict
-      - -ST1021  # Type comment form - too strict
-      - -ST1022  # Const comment form - too strict
-      - -QF1003  # Don't require tagged switch
-      - -SA9003  # Empty branches are intentional for error handling
-      - -QF1012  # Allow WriteString with fmt.Sprintf (more readable)
+  settings:
+    errcheck:
+      # Don't check type assertions (too noisy for map access patterns)
+      check-type-assertions: false
+      # Exclude common patterns where ignoring errors is acceptable
+      exclude-functions:
+        # File operations that are safe to ignore in defer
+        - (io.Closer).Close
+        - (*os.File).Close
+        - (net.Conn).Close
+        - (net.Listener).Close
+        - (*net.UnixConn).Close
+        - (*net.UnixListener).Close
+        # Exec commands in cleanup contexts
+        - (*os/exec.Cmd).Run
+        # Printf-like functions where errors are typically ignored
+        - (*github.com/fatih/color.Color).Printf
+        - (*github.com/fatih/color.Color).Print
+        - fmt.Printf
+        - fmt.Println
+        - fmt.Print
+        - fmt.Scanln
+        - fmt.Sscanf
+        # JSON encoding where error handling is optional
+        - (*encoding/json.Encoder).Encode
+        # OS operations that are best-effort cleanup
+        - os.Remove
+        - os.RemoveAll
+        - os.Setenv
+        - os.Unsetenv
+        - os.Chdir
+        - os.Chmod
+        - os.MkdirAll
+        - os.WriteFile
+        # Daemon/server stop operations in cleanup
+        - (*github.com/metalstormbass/bizzaroclaude/internal/daemon.Daemon).Stop
+        - (*github.com/metalstormbass/bizzaroclaude/internal/daemon.Daemon).Start
+        # Tmux cleanup operations
+        - (*github.com/metalstormbass/bizzaroclaude/pkg/tmux.Client).KillSession
+        - (*github.com/metalstormbass/bizzaroclaude/pkg/tmux.Client).KillWindow
+        - (*github.com/metalstormbass/bizzaroclaude/pkg/tmux.Client).SendKeysLiteral
+        # State operations that are often best-effort
+        - (*github.com/metalstormbass/bizzaroclaude/internal/state.State).AddRepo
+        - (*github.com/metalstormbass/bizzaroclaude/internal/state.State).AddAgent
+        - (*github.com/metalstormbass/bizzaroclaude/internal/state.State).RemoveAgent
+        - (*github.com/metalstormbass/bizzaroclaude/internal/state.State).UpdateAgent
+        - (*github.com/metalstormbass/bizzaroclaude/internal/state.State).ClearAllAgents
+        - (*github.com/metalstormbass/bizzaroclaude/internal/state.State).Save
+        - (*github.com/metalstormbass/bizzaroclaude/internal/state.State).SetCurrentRepo
+        # Worktree removal in cleanup
+        - (*github.com/metalstormbass/bizzaroclaude/internal/worktree.Manager).Remove
+        # CLI operations in tests
+        - (*github.com/metalstormbass/bizzaroclaude/internal/cli.CLI).Execute
+        - (*github.com/metalstormbass/bizzaroclaude/internal/cli.CLI).showVersion
+        - (*github.com/metalstormbass/bizzaroclaude/internal/cli.CLI).showHelp
+        # Socket server cleanup
+        - (*github.com/metalstormbass/bizzaroclaude/internal/socket.Server).Stop
+        - (*github.com/metalstormbass/bizzaroclaude/internal/socket.Server).Serve
+        # Logger cleanup
+        - (*github.com/metalstormbass/bizzaroclaude/internal/logging.Logger).Close
+    gocritic:
+      disabled-checks:
+        # Allow if-else chains for simple conditions
+        - ifElseChain
+        # Allow deprecation comments in various formats
+        - deprecatedComment
+        # Allow else { if } patterns in some cases
+        - elseif
+    staticcheck:
+      checks:
+        - all
+        # Disable strict style checks
+        - -ST1000  # Package comments - not critical for internal packages
+        - -ST1020  # Method comment form - too strict
+        - -ST1021  # Type comment form - too strict
+        - -ST1022  # Const comment form - too strict
+        - -QF1003  # Don't require tagged switch
+        - -SA9003  # Empty branches are intentional for error handling
+        - -QF1012  # Allow WriteString with fmt.Sprintf (more readable)
 
 issues:
   # Show all issues from a linter
