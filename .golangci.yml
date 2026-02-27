@@ -8,7 +8,6 @@ linters:
     - staticcheck
     - unused
     - ineffassign
-    - typecheck
   settings:
     errcheck:
       # Don't check type assertions (too noisy for map access patterns)
