@@ -80,7 +80,7 @@ jobs:
         run: go tool cover -func=coverage.out | tail -20
 
       - name: Upload coverage to artifacts
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: coverage-unit
           path: coverage.out
@@ -183,7 +183,7 @@ jobs:
         continue-on-error: true
 
       - name: Upload coverage to artifacts
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: coverage-full
           path: coverage.out

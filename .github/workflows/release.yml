@@ -115,7 +115,7 @@ jobs:
           fi
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: bizzaroclaude-${{ matrix.name }}
           path: |
@@ -124,7 +124,7 @@ jobs:
           retention-days: 7
 
       - name: Upload checksums
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: checksums-${{ matrix.name }}
           path: bizzaroclaude-*.sha256
